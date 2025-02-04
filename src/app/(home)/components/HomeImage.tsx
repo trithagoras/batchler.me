@@ -18,20 +18,20 @@ const HomeImage = () => {
 const LightHomeImage = () => (
   <div>
     <Image src={storyb} alt="Story bridge" />
-    <small className="text-sm italic text-center items-center justify-between mx-auto p-4">
+    <p className="text-sm italic text-center items-center justify-between mx-auto p-4">
       Brisbane&apos;s Story Bridge, Nov. 2019. Taken by me after a few brews at
       Felon&apos;s.
-    </small>
+    </p>
   </div>
 );
 
 const DarkHomeImage = () => (
   <div>
     <Image src={storybNight} alt="Story bridge" />
-    <small className="text-sm italic text-center items-center justify-between mx-auto p-4">
+    <p className="text-sm italic text-center items-center justify-between mx-auto p-4">
       Brisbane&apos;s Story Bridge, Dec. 2021. Believe it or not, taken by me
       after a few brews at Felon&apos;s.
-    </small>
+    </p>
   </div>
 );
 

@@ -6,6 +6,7 @@ import Navbar from "./layout/Navbar";
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import Providers from "./Providers";
+import Footer from "./layout/Footer";
 config.autoAddCss = false
 
 const geistSans = Geist({
@@ -38,6 +39,8 @@ export default function RootLayout({
             <Navbar />
             <hr className="my-4" />
             {children}
+            <hr className="mt-16 mb-4" />
+            <Footer />
           </div>
         </Providers>
         

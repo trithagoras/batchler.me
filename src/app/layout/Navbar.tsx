@@ -54,7 +54,7 @@ const Navbar = () => {
         
         {/* Mobile Menu with Animation */}
         <div
-          className={`w-full md:w-auto overflow-hidden transition-all duration-300 ease-in-out ${
+          className={`w-full md:w-auto overflow-hidden transition-all duration-300 ease-in-out p-4 ${
             isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           } md:max-h-none md:opacity-100 md:block`}
           id="navbar-default"
