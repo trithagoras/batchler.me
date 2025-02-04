@@ -8,6 +8,7 @@ import remarkMath from "remark-math";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import rehypeRaw from "rehype-raw";
 import "./style.css";
+import Image from "next/image";
 
 const renderers = {
   code({ node, inline, className, children, ...props }) {
@@ -27,7 +28,19 @@ const renderers = {
       </code>
     );
   },
-
+  img({ node, src, alt, title, ...props }) {
+    return (
+      <Image
+        {...props}
+        src={src}
+        alt={alt}
+        title={title}
+        width={800}
+        height={600}
+        className="rounded-lg"
+      />
+    );
+  },
 };
 
 interface PostPageProps {

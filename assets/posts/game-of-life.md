@@ -13,7 +13,7 @@ Conway's Game of Life operates on a grid of cells, where each cell can be either
 3. Any live cell with more than three live neighbors dies, as if by overpopulation.
 4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
-<img src='/posts/game-of-life/Gospers_glider_gun.gif' />
+<img src='/posts/game-of-life/Gospers_glider_gun.gif' alt='Gosper&apos;s glider gun soaring' />
 
 Pictured above is a single Gosper's glider gun creating gliders.
 
@@ -48,7 +48,7 @@ The kernel will 'slide' over each element in the map matrix, where the updated v
 
 A simple illustration of a kernel convolution is shown below.
 
-<img src='/posts/game-of-life/convolution.gif' style='max-width: 100%' />
+<img src='/posts/game-of-life/convolution.gif' alt='A visualization of a convolution' />
 
 (Retrieved from [https://blog.paperspace.com/ghostnet-cvpr-2020/](https://blog.paperspace.com/ghostnet-cvpr-2020/))
 
@@ -175,6 +175,6 @@ And finally, I've implemented some user control, where pressing `[space]` pauses
 
 The final product is shown below. The task was ultimately simple and took around 3 hours of my morning. It was a fun, small, morning exercise in parallelization and many more optimizations could be done (including the use of the [Fast Fourier Transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform)).
 
-<img src='/posts/game-of-life/Animation.gif' style='max-width: 100%' />
+<img src='/posts/game-of-life/Animation.gif' alt='The finaly product' />
 
 (This post is a work-in-progress, with features still being added to the simulation and the post needing to be rewritten).
