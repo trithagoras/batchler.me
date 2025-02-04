@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import metadata from "../framework/metadata";
 import { notFound } from "next/navigation";
 import { getPostContent } from "../framework/getPostContent";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { Components } from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
@@ -10,12 +11,13 @@ import rehypeRaw from "rehype-raw";
 import "./style.css";
 import Image from "next/image";
 
-const renderers = {
-  code({ node, inline, className, children, ...props }) {
+const renderers: Components = {
+  code(props) {
+    const {children, className, ...rest} = props
     const match = /language-(\w+)/.exec(className || "");
-    return !inline && match ? (
+    return match ? (
       <SyntaxHighlighter
-        {...props}
+        {...(rest as any)}
         style={oneDark}
         language={match[1]}
         PreTag="div"
@@ -28,12 +30,12 @@ const renderers = {
       </code>
     );
   },
-  img({ node, src, alt, title, ...props }) {
+  img({ src, alt, title, ...props }) {
     return (
       <Image
         {...props}
-        src={src}
-        alt={alt}
+        src={src!}
+        alt={alt ?? ''}
         title={title}
         width={800}
         height={600}
@@ -72,7 +74,7 @@ const Post = async ({ params }: PostPageProps) => {
       <ReactMarkdown
         remarkPlugins={[remarkMath]} // enables math rendering
         rehypePlugins={[rehypeKatex, rehypeRaw]} // enables Katex for LaTeX rendering
-        components={renderers as any} // custom renderer for code blocks
+        components={renderers} // custom renderer for code blocks
       >
         {content}
       </ReactMarkdown>
