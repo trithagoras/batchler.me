@@ -69,7 +69,7 @@ const Navbar = () => {
             <li>
               <NavLink to="/projects" text="Projects" />
             </li>
-            <li>
+            <li className="mt-4 ml-3 md:mt-0 md:ml-0">
               <DarkModeSwitch />
             </li>
           </ul>
