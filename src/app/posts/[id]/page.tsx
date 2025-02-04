@@ -28,6 +28,7 @@ const Post = async ({ params }: PostPageProps) => {
   return (
     <article className="prose prose-lg dark:prose-invert">
       <h1>{post.title}</h1>
+      <span className="italic text-gray-400">{post.date.toDateString()}</span>
       <ReactMarkdown>{content}</ReactMarkdown>
     </article>
   );
