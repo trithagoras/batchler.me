@@ -6,7 +6,7 @@ const PostEntry = ({ model }: { model: PostModel }) => (
     <div className='p-4'>
         <span>{model.date.toDateString()}</span>
         <Link href={`/posts/${model.id}`}>
-            <h2 className='text-3xl text-blue-700 dark:text-blue-300'>{model.title}</h2>
+            <h2 className='text-3xl text-blue-700 dark:text-blue-300 hover:underline'>{model.title}</h2>
         </Link>
     </div>
 
