@@ -20,6 +20,7 @@ const Footer = () => (
           <a
             href="https://www.linkedin.com/in/coreybatchler"
             className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+            target='_blank'
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -36,6 +37,7 @@ const Footer = () => (
           <a
             href="https://github.com/trithagoras"
             className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+            target='_blank'
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -52,6 +54,7 @@ const Footer = () => (
           <a
             href="https://www.instagram.com/coreybatchler/"
             className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+            target='_blank'
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
