@@ -21,6 +21,7 @@ export default {
             pre: {
               backgroundColor: "var(--code-background)",
               color: "var(--code-text)",
+              padding: "0 !important"
             },
             "code::before": { content: "" },
             "code::after": { content: "" },
