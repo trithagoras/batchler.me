@@ -18,6 +18,12 @@ const posts: PostModel[] = [
       "Conway's Game of Life using SFML in C++ with multidimensional discrete convolutions",
     date: new Date(2023, 6, 24),
   },
+  {
+    id: "monads-across-paradigms",
+    title:
+      "How monads can be used outside of functional programming languages",
+    date: new Date(2025, 1, 5),
+  },
 ];
 
 export default posts;
