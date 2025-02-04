@@ -4,8 +4,8 @@ import { getPostContent } from "../framework/getPostContent";
 import ReactMarkdown from "react-markdown";
 
 interface PostPageProps {
-    params: { id: string };  // Dynamic Route Parameter
-  }
+  params: { id: string };
+}
 
 export async function generateStaticParams() {
   return metadata.map((post) => ({ id: post.id }));
@@ -26,18 +26,11 @@ const Post = async ({ params }: PostPageProps) => {
   }
 
   return (
-    <article className="prose-lg">
-        <h1>{post.title}</h1>
-        <ReactMarkdown>{content}</ReactMarkdown>
+    <article className="prose prose-lg dark:prose-invert">
+      <h1>{post.title}</h1>
+      <ReactMarkdown>{content}</ReactMarkdown>
     </article>
-);
-
-//   return (
-//     <div className="prose lg:prose-xl">
-//       <h1>{post.title}</h1>
-//       <div dangerouslySetInnerHTML={{ __html: content }} />
-//     </div>
-//   );
+  );
 };
 
 export default Post;
