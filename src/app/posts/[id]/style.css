@@ -1,0 +1,4 @@
+/* For some reason, matrix rendering is busted and this is the only way I can think to 'fix' */
+.katex-html {
+    display: none;
+}

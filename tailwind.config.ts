@@ -18,6 +18,10 @@ export default {
       typography: {
         DEFAULT: {
           css: {
+            pre: {
+              backgroundColor: "var(--code-background)",
+              color: "var(--code-text)",
+            },
             "code::before": { content: "" },
             "code::after": { content: "" },
           },
