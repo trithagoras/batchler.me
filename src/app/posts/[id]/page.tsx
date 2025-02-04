@@ -44,7 +44,7 @@ const renderers = {
 };
 
 interface PostPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateStaticParams() {
@@ -52,7 +52,7 @@ export async function generateStaticParams() {
 }
 
 const Post = async ({ params }: PostPageProps) => {
-  const id = params.id;
+  const { id } = await params;
 
   const datas = metadata.filter((md) => md.id === id);
   if (datas.length !== 1) {

@@ -13,13 +13,16 @@ export const ThemeContext = createContext<ThemeContextType>({
 });
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [darkMode, setDarkMode] = useState<boolean>(
-    () =>
-      window &&
-      localStorage.getItem("darkMode") === "true"
-  );
+  const [darkMode, setDarkMode] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
+    // run only on client side
+    const storedDarkMode = localStorage.getItem("darkMode") === "true";
+    setDarkMode(storedDarkMode);
+  }, []);
+
+  useEffect(() => {
+    if (darkMode === undefined) return;
     if (darkMode) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("darkMode", "true");
@@ -30,6 +33,11 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, [darkMode]);
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
+
+  if (darkMode === undefined) {
+    // prevent rendering before hydration is complete
+    return null;
+  }
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
