@@ -82,3 +82,98 @@ fn main() -> Result<f32> {
 ```
 
 As you can see, the short-circuit operator reduces a lot of boilerplate across our programs.
+
+### C# - exceptions
+
+In C# (and many other imperative languages), exceptions are primarily used to handle errors. They are a control-flow technique that can similarly short-circuit functions and yield control back up the call-stack until the error is handled explicitly.
+
+The same example as above:
+
+```c#
+float Divide(float p, float q) {
+    if (q == 0.0) {
+        throw new Exception("Attempted to divide by zero.");
+    }
+    return p / q;
+}
+```
+
+And the caller code:
+
+```c#
+float Main() {
+    var p = 10.0;
+    var q = 2.0;
+
+    float ans;
+    ans = Divide(p, q);
+    ans = Divide(p, ans);
+    // ...
+
+    // if at this point, no failures have occurred.
+    Console.WriteLine($"The answer is {ans}");
+    return ans;
+}
+```
+
+Notice that this looks almost identical to the control-flow of Rust with the short-circuit operator. The only issue here is that it's not clear from this code that divide can fail.
+
+In C# and other languages that don't have checked exceptions (see not Java), exceptions are not included in function contracts, meaning there's no way to know that the function can fail just by looking at it. Of course, well documented code will tell you if the code can throw exceptions, but not everyone documents their code well.
+
+However, this isn't meaning to say that exceptions are bad or inferior to results. Exceptions typically don't need to be considered in your application code, since they should be exceptional. There is an unfortunate anti-pattern where exceptions are being used as general control-flow (i.e. glorified goto statements), and this is the main argument against checked exceptions.
+
+```java
+float divide(float p, float q) throws DivideByZeroException {
+    if (q == 0.0f) {
+        throw new DivideByZeroException();
+    }
+    return p / q;
+}
+```
+
+an example of Java's checked exceptions
+
+Now, this post isn't for or against the use of exceptions in code, so we'll get back on track.
+
+
+## Something or nothing - the Maybe monad
+
+This will be a brief section, as it was covered earlier and it's the simplest example.
+
+In many manual memory-management languages such as C/C++, `nullptr` was used to denote whether a pointer pointed to some meaningful memory or if it points to nothing. This practice was carried on to automatic memory-managed languages such as Java and C# so that any object could possibly be `null`.
+
+The inclusion and use of null is very simple and can cause fewer headaches in the short-term, but poses significant headaches in large and critical codebases where null dereferencing can lead to errors, vulnerabilities, and system crashes.
+
+In recent years, C# has introduced null-safety, a very popular pattern that guarantees certain references will not be null at compile-time. To be pedantic, C# is not entirely null-safe, since it's an optional feature and can be overridden, but for new projects that opt-in to null-safety, it's one of the best things you can do for your own sanity.
+
+It does this through the `?` decorator.
+
+The ? decorator after a type T will tell the compiler that this type is actually `Nullable<T>`. As an example:
+
+```c#
+void Main(string[] args) {
+    string? arg = args.FirstOrDefault();
+    // arg is either some string or nothing
+}
+```
+
+Other languages that have no nulls often rely on ADTs (Abstract Data Types) to represent something or nothing.
+
+```rust
+enum Option<T> {
+    None,
+    Some(T)
+}
+```
+
+These are functionally equivalent, that is to say that the Nullable<T> type in C# is a monad. It even has its own short-circuiting features via the ?. and the ?? operators, e.g.
+
+```c#
+var name = person?.Name ?? "default name"
+```
+
+## Conclusion
+
+To avoid dragging this post out for too long, I'll cut the post off here. There are many other examples of monads in imperative languages, but ultimately, they just aren't that important. They're there, but no one really cares because in a non-functional context, there are so many other control-flow patterns available that obsolete the desire for categorising things as monads.
+
+One final example that I'm particularly interested in is the *Future monad* which models asynchronous actions. Thankfully, this has already been covered in much greater detail by a much more qualified person: [Bartosz Milewski - C++17 - I See a Monad in Your Future!](https://bartoszmilewski.com/2014/02/26/c17-i-see-a-monad-in-your-future/). Make sure to check it out!
